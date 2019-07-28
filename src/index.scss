@@ -1,0 +1,44 @@
+body, div, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2B3A42;
+}
+
+.app {
+    margin: 60px auto;
+    width: 600px;
+    max-width: calc(100% - 20px);
+    .header {
+        height: 40px;
+        .text {
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            font-size: 20px;
+        }
+    }
+    .body {
+        width: 100%;
+        padding-top: 100%;
+        background-color: wheat;
+        position: relative;
+        .node {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background-color: black;
+            border: 1px solid white;
+        }
+        .food {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background-color: red;
+            border-radius: 50%;
+        }
+    }
+}
