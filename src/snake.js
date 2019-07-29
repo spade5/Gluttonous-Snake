@@ -5,11 +5,18 @@ var ROW = 60;
 function Snake(container, countNode) {
     this.container = container;
     this.countNode = countNode;
+
     this.createFood();
 }
 
 Snake.prototype = {
-    foodList: [],
+    food: null,
+    createBody: function() {
+
+    },
+    createNode: function(x, y) {
+
+    },
     createFood: function() {
         var left = Math.floor(Math.random() * COLUMN) * SIZE;
         var top = Math.floor(Math.random() * ROW) *SIZE;
@@ -17,7 +24,6 @@ Snake.prototype = {
         food.className = 'food';
         food.style = 'top:' + top + 'px;left:' + left + 'px;';
         this.container.append(food);
-        setTimeout(this.createFood.bind(this), 10);
     }
 }
 
