@@ -31,14 +31,14 @@ body {
             height: 10px;
             position: absolute;
             background-color: black;
-            border: 1px solid white;
+            &.head {
+                background-color: white;
+            }
+            &.food {
+                background-color: red;
+                border-radius: 50%;
+            }
         }
-        .food {
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            background-color: red;
-            border-radius: 50%;
-        }
+        
     }
 }
