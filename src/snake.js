@@ -2,7 +2,7 @@ import Node from './node';
 
 var COLUMN = 60;
 var ROW = 60;
-var INIT_LEN = 5;
+var INIT_LEN = 2;
 var SPEED = 100;
 var LEFT = -2;
 var RIGHT = -1;
@@ -46,8 +46,8 @@ Snake.prototype = {
         if (dir && dir * this.dir < 0 ) {
             this.dir = dir;
         }
-        var headX = this.head.x;
-        var headY = this.head.y;
+        var headX = this.head.x ;
+        var headY = this.head.y ;
         switch(this.dir) {
             case RIGHT: 
                 headX++;
@@ -63,6 +63,15 @@ Snake.prototype = {
                 break;
             default:;
         }
+        if(!this.eatItself(headX,headY,this.head.next)||!this.crash(headX,headY)){
+            this.countNode.innerText += '  游戏结束'
+            this.move = function(){
+                null
+            }
+            console.log(headX, headY)
+            console.log(this.head.x, this.head.y)
+            return false
+        }
         //TODO: check crash
         if (!this.checkFood(headX, headY)) {
             this.head.prev = this.tail;
@@ -73,6 +82,7 @@ Snake.prototype = {
             this.tail = this.tail.prev;
             this.head.prev = null;
         } 
+
         this.timer = setTimeout(this.move.bind(this), SPEED);
     },
     checkFood(x, y) {
@@ -107,7 +117,22 @@ Snake.prototype = {
     incScore() {
         this.score++;
         this.countNode.innerText = this.score;
-    }
+    },
+    eatItself( x,y,temp){
+        if (x === temp.x && y === temp.y){
+            return false
+        }else if(temp.next == null){
+            return true
+        }else{
+            return this.eatItself(x,y,temp.next)
+        }
+    },
+    crash(x,y){
+        if(x<0||y<0||x>ROW||y>COLUMN)
+        return false
+        return true
+    },
+
 }
 
 export default Snake;
